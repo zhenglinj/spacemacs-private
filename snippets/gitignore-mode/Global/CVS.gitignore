@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: CVS
+# key: cvs
+# group: Global
+# --
+##### CVS #####
+/CVS/*
+**/CVS/*
+.cvsignore
+*/.cvsignore

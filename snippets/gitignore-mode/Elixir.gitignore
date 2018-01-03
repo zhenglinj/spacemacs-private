@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: Elixir
+# key: elixir
+# --
+##### Elixir #####
+/_build
+/cover
+/deps
+/doc
+/.fetch
+erl_crash.dump
+*.ez
+*.beam

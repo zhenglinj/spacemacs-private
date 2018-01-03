@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Espresso
+# key: espresso
+# group: Global
+# --
+##### Espresso #####
+*.esproj

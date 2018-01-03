@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Idris
+# key: idris
+# --
+##### Idris #####
+*.ibc
+*.o

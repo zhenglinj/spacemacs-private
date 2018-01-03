@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Ninja
+# key: ninja
+# group: Global
+# --
+##### Ninja #####
+.ninja_deps
+.ninja_log

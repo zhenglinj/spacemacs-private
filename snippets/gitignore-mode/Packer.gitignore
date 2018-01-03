@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Packer
+# key: packer
+# --
+##### Packer #####
+# Cache objects
+packer_cache/
+
+# For built boxes
+*.box

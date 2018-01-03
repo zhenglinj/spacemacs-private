@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Scala
+# key: scala
+# --
+##### Scala #####
+*.class
+*.log

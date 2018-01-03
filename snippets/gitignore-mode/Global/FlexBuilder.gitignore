@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: FlexBuilder
+# key: flexbuilder
+# group: Global
+# --
+##### FlexBuilder #####
+bin/
+bin-debug/
+bin-release/

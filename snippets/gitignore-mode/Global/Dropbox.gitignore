@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Dropbox
+# key: dropbox
+# group: Global
+# --
+##### Dropbox #####
+# Dropbox settings and caches
+.dropbox
+.dropbox.attr
+.dropbox.cache

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Lilypond
+# key: lilypond
+# --
+##### Lilypond #####
+*.pdf
+*.ps
+*.midi
+*.mid
+*.log
+*~

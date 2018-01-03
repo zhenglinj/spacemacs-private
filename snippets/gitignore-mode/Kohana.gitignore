@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Kohana
+# key: kohana
+# --
+##### Kohana #####
+application/cache/*
+application/logs/*

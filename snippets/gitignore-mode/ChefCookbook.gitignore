@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: ChefCookbook
+# key: chefcookbook
+# --
+##### ChefCookbook #####
+.vagrant
+/cookbooks
+
+# Bundler
+bin/*
+.bundle/*
+
+.kitchen/
+.kitchen.local.yml

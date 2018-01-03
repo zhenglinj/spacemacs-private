@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: SVN
+# key: svn
+# group: Global
+# --
+##### SVN #####
+.svn/

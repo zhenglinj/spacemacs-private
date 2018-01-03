@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Ansible
+# key: ansible
+# group: Global
+# --
+##### Ansible #####
+*.retry

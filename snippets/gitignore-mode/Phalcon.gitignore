@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Phalcon
+# key: phalcon
+# --
+##### Phalcon #####
+/cache/
+/config/development/

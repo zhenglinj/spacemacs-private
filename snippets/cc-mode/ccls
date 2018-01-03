@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: comment_class
+# key: ccls
+# --
+/** @class   ${1:}
+ *  @brief   ${2:}
+**/

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: NotepadPP
+# key: notepadpp
+# group: Global
+# --
+##### NotepadPP #####
+# Notepad++ backups #
+*.bak

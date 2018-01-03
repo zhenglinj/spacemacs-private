@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: Agda
+# key: agda
+# --
+##### Agda #####
+*.agdai

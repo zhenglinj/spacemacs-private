@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: AppEngine
+# key: appengine
+# --
+##### AppEngine #####
+# Google App Engine generated folder
+appengine-generated/

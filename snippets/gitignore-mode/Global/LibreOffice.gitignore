@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: LibreOffice
+# key: libreoffice
+# group: Global
+# --
+##### LibreOffice #####
+# LibreOffice locks
+.~lock.*#

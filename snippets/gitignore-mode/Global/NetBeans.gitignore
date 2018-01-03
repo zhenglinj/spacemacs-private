@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: NetBeans
+# key: netbeans
+# group: Global
+# --
+##### NetBeans #####
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

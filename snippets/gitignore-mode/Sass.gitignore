@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Sass
+# key: sass
+# --
+##### Sass #####
+.sass-cache/
+*.css.map

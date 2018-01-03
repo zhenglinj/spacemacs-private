@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Redis
+# key: redis
+# group: Global
+# --
+##### Redis #####
+# Ignore redis binary dump (dump.rdb) files
+
+*.rdb

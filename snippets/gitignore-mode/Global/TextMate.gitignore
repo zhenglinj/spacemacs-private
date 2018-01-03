@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: TextMate
+# key: textmate
+# group: Global
+# --
+##### TextMate #####
+*.tmproj
+*.tmproject
+tmtags

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Mercurial
+# key: mercurial
+# group: Global
+# --
+##### Mercurial #####
+.hg/
+.hgignore
+.hgsigs
+.hgsub
+.hgsubstate
+.hgtags

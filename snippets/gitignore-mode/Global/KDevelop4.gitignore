@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: KDevelop4
+# key: kdevelop4
+# group: Global
+# --
+##### KDevelop4 #####
+*.kdev4
+.kdev4/

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Bazaar
+# key: bazaar
+# group: Global
+# --
+##### Bazaar #####
+.bzr/
+.bzrignore

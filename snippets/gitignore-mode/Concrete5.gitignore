@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Concrete5
+# key: concrete5
+# --
+##### Concrete5 #####
+config/site.php
+files/cache/*
+files/tmp/*
+.htaccess

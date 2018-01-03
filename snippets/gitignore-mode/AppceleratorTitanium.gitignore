@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: AppceleratorTitanium
+# key: appceleratortitanium
+# --
+##### AppceleratorTitanium #####
+# Build folder and log file
+build/
+build.log

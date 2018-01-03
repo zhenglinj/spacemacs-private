@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: comment_fileheader
+# key: cfh
+# --
+/** @file           `(buffer-name)`
+ *  @copyright      ${1:HangZhou Hikvision System Technology Co., Ltd. All Right Reserved.}
+ *  @brief          ${2:}
+ *
+ *  @author         `(user-real-login-name)`
+ *  @date           `(format-time-string "%F")`
+ *
+ *  @note           ${3:}
+ *
+ *  @warning        ${4:}
+**/

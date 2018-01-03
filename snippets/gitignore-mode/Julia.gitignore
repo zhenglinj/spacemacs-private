@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Julia
+# key: julia
+# --
+##### Julia #####
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+deps/deps.jl

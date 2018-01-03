@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: hikvison_function
+# key: cfn
+# --
+/** @brief       ${1:}
+ *  @param[in]   ${2:none}
+ *  @param[out]  ${3:none}
+ *  @return      ${4:none}
+**/

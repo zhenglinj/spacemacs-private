@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Qooxdoo
+# key: qooxdoo
+# --
+##### Qooxdoo #####
+cache
+cache-downloads
+inspector
+api
+source/inspector.html

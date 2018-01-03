@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Lithium
+# key: lithium
+# --
+##### Lithium #####
+libraries/*
+resources/tmp/*

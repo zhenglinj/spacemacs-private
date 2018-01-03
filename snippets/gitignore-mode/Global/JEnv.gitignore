@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: JEnv
+# key: jenv
+# group: Global
+# --
+##### JEnv #####
+# JEnv local Java version configuration file
+.java-version
+
+# Used by previous versions of JEnv
+.jenv-version

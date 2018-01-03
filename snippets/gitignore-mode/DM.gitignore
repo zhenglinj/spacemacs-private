@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: DM
+# key: dm
+# --
+##### DM #####
+*.dmb
+*.rsc
+*.int
+*.lk
+*.zip

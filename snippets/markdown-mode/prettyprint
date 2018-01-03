@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: prettyprint
+# key: pprint
+# --
+<pre class="prettyprint ${1:lang-cpp} linenums=${2:true}">
+${0:}
+</pre>

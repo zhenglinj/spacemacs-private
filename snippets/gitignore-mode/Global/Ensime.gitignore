@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Ensime
+# key: ensime
+# group: Global
+# --
+##### Ensime #####
+# Ensime specific
+.ensime
+.ensime_cache/
+.ensime_lucene/

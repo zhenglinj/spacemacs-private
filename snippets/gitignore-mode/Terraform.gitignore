@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Terraform
+# key: terraform
+# --
+##### Terraform #####
+#  Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars

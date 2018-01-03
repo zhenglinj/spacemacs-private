@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: SCons
+# key: scons
+# --
+##### SCons #####
+# for projects that use SCons for building: http://http://www.scons.org/
+.sconsign.dblite

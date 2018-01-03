@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: TortoiseGit
+# key: tortoisegit
+# group: Global
+# --
+##### TortoiseGit #####
+# Project-level settings
+/.tgitconfig

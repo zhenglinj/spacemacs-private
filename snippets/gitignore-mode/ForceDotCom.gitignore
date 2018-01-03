@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: ForceDotCom
+# key: forcedotcom
+# --
+##### ForceDotCom #####
+.project
+.settings
+salesforce.schema
+Referenced Packages

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: Yeoman
+# key: yeoman
+# --
+##### Yeoman #####
+node_modules/
+bower_components/
+*.log
+
+build/
+dist/

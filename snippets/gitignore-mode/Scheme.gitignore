@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Scheme
+# key: scheme
+# --
+##### Scheme #####
+*.ss~
+*.ss#*
+.#*.ss
+
+*.scm~
+*.scm#*
+.#*.scm

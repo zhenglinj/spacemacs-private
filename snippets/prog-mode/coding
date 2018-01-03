@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: file_coding
+# key: coding
+# --
+${`(comment-or-uncomment-region (line-beginning-position) (line-end-position))`}-*- coding: ${1:`(if (or (eq system-type 'windows-nt) (eq system-type 'cygwin)) "gb2312-dos" "utf-8")`} -*-
