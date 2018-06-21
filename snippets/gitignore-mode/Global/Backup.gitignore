@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Backup
+# key: backup
+# group: Global
+# --
+##### Backup #####
+*.bak
+*.gho
+*.ori
+*.tmp

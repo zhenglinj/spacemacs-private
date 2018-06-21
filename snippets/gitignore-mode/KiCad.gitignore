@@ -4,6 +4,7 @@
 # --
 ##### KiCad #####
 # For PCBs designed using KiCad: http://www.kicad-pcb.org/
+# Format documentation: http://kicad-pcb.org/help/file-formats/
 
 # Temporary files
 *.000
@@ -13,6 +14,10 @@
 *~
 _autosave-*
 *.tmp
+*-cache.lib
+*-rescue.lib
+*-save.pro
+*-save.kicad_pcb
 
 # Netlist files (exported from Eeschema)
 *.net
