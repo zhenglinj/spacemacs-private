@@ -30,22 +30,36 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(ruby
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ivy
-     (auto-completion :variables auto-completion-enable-sort-by-usage t
+     ;; +checkers
+     ;; spell-checking
+     syntax-checking
+     ;; +completion
+     (auto-completion :variables auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t
+                      company-show-numbers t
                       :disabled-for org markdown)
+     ivy
+     ;; +emacs
      better-defaults
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      org
-
+     ;; +filetree
+     treemacs
+     ;; +fonts
+     unicode-fonts
+     ;; +frameworks
      react
-
+     ;; +intl
+     (chinese :variables
+              chinese-enable-youdao-dict t)
+     ;; +lang
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode)
      csv
@@ -55,10 +69,20 @@ values."
      ipython-notebook
      javascript
      markdown
-     python
+     ;; pip install --upgrade "jedi>=0.9.0" "json-rpc>=1.8.1" "service_factory>=0.1.5"
+     ;; pip install python-language-server pyls-isort pyls-mypy flake8 autofake
+     (python :variables
+             python-backend 'anaconda
+             python-test-runner 'pytest
+             python-enable-yapf-format-on-save t
+             python-sort-imports-on-save t)
      shell-scripts
      sql
-
+     ;; +os
+     osx
+     ;; +readers
+     dash
+     ;; +source-control
      (git :variables
           git-magit-status-fullscreen t
           magit-push-always-verify nil
@@ -67,27 +91,39 @@ values."
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
      version-control
-
+     ;; +spacemacs
+     spacemacs-defaults
+     spacemacs-editing-visual
+     spacemacs-language
+     spacemacs-modeline
+     spacemacs-navigation
+     spacemacs-org
+     spacemacs-purpose
+     spacemacs-visual
+     ;; +tags
      gtags
-
+     ;; +themes
+     (colors :variables
+             ;; colors-colorize-identifiers 'all
+             colors-default-rainbow-identifiers-sat 42
+             colors-default-rainbow-identifiers-light 86)
+     ;; +tools
+     (debug :variables debug-additional-debuggers '("ipdb" "pdb" "remake"))
+     pandoc
      (shell :variables
             shell-default-height 30
             shell-default-position 'bottom)
-
-     spell-checking
-     syntax-checking
-
+     ;; +web-services
      evernote
 
-     osx
-
+     ;; private
      zhenglinj
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(realgud realgud-pry)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -159,8 +195,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-light
-                         spacemacs-dark)
+   dotspacemacs-themes '(spacemacs-dark
+                         spacemacs-light)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
@@ -169,7 +205,7 @@ values."
                                :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
@@ -350,26 +386,24 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq powerline-default-separator 'nil)
-  ;;解决org表格里面中英文对齐的问题
-  (when (configuration-layer/layer-usedp 'chinese)
-    (when (and (spacemacs/system-is-mac) window-system)
-      (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
-  ;; Setting Chinese Font
+  ;; Note: The Hiragino Sans GB is bundled with MacOS X.
+  ;; If you are not using MacOS X, you should change it to another Chinese font name.
+  (spacemacs//set-monospaced-font   "Source Code Pro" "Hiragino Sans GB" 14 16)
+
+  ;; mswindows Setting
   (when (and (spacemacs/system-is-mswindows) window-system)
     (setq ispell-program-name "aspell")
     (setq w32-pass-alt-to-system nil)
-    (setq w32-apps-modifier 'super)
-    (dolist (charset '(kana han symbol cjk-misc bopomofo))
-      (set-fontset-font (frame-parameter nil 'font)
-                        charset
-                        (font-spec :family "Microsoft Yahei" :size 14))))
+    (setq w32-apps-modifier 'super))
 
   (fset 'evil-visual-update-x-selection 'ignore)
 
   ;; force horizontal split window
   (setq split-width-threshold 120)
-  (linum-relative-on)
+  ;; display-line-numbers (only in Emacs 26.x and newer)
+  ;; linum (only in Emacs 25.x and older)
+  ;; (linum-relative-on)
 
   (spacemacs|add-company-backends :modes text-mode)
 
@@ -414,13 +448,6 @@ you should place your code here."
         (when (looking-at (concat "^" (make-string tab-width ?\ )))
           (replace-match "")))))
 
-  (defun zilongshanren/toggle-major-mode ()
-    (interactive)
-    (if (eq major-mode 'fundamental-mode)
-        (set-auto-mode)
-      (fundamental-mode)))
-  (spacemacs/set-leader-keys "otm" 'zilongshanren/toggle-major-mode)
-
   ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
   ;; https://github.com/syl20bnr/spacemacs/issues/7749
@@ -439,25 +466,37 @@ you should place your code here."
                             (projectile-switch-project-by-name project)
                             (setq default-directory old-default-directory))))))
   )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
- '(lice:header-spec
-   (quote
-    (lice:insert-copyright lice:insert-author lice:insert-license)))
  '(package-selected-packages
    (quote
-    (lice figlet reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl geeknote yapfify web-beautify sql-indent pyvenv pytest pyenv-mode py-isort pip-requirements livid-mode live-py-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js-doc insert-shebang ibuffer-projectile hy-mode go-guru go-eldoc ggtags fish-mode ein skewer-mode request-deferred websocket deferred js2-mode simple-httpd disaster cython-mode csv-mode company-tern dash-functional tern company-shell company-go go-mode company-c-headers company-anaconda coffee-mode cmake-mode clang-format anaconda-mode pythonic xterm-color unfill smeargle shell-pop orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download mwim multi-term magit-gitflow htmlize gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter fuzzy flyspell-correct-ivy flyspell-correct flycheck-pos-tip pos-tip flycheck evil-magit magit magit-popup git-commit with-editor eshell-z eshell-prompt-extras esh-help diff-hl company-web web-completion-data company-statistics company auto-yasnippet yasnippet auto-dictionary ac-ispell auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode haml-mode emmet-mode mmm-mode markdown-toc markdown-mode gh-md winum ws-butler window-numbering which-key wgrep volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline smex restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint ivy-hydra info+ indent-guide ido-vertical-mode hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-make helm helm-core google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump popup f s diminish define-word counsel-projectile projectile pkg-info epl counsel swiper ivy column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed dash async aggressive-indent adaptive-wrap ace-window ace-link avy quelpa package-build spacemacs-theme)))
- '(powerline-default-separator (quote box))
- '(powerline-height 18))
+    (ruby-refactor ruby-hash-syntax helm-gtags enh-ruby-mode inf-ruby youdao-dictionary names chinese-word-at-point realgud-pry realgud test-simple loc-changes load-relative rainbow-mode rainbow-identifiers pyim pyim-basedict pangu-spacing pandoc-mode ox-pandoc ht find-by-pinyin-dired dash-at-point counsel-dash helm-dash company-quickhelp color-identifiers-mode ace-pinyin pinyinlib yapfify yaml-mode xterm-color ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit sql-indent spaceline smex smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rake rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pbcopy paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint lice less-css-mode launchctl json-mode js2-refactor js-doc ivy-hydra insert-shebang indent-guide ibuffer-projectile hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md ggtags geeknote fuzzy flycheck-pos-tip flx-ido fish-mode fill-column-indicator figlet fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav ein dumb-jump disaster diminish diff-hl cython-mode csv-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-c-headers company-anaconda column-enforce-mode coffee-mode cnfonts cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ac-ispell)))
+ '(powerline-default-separator nil)
+ '(powerline-height 25)
+ '(powerline-image-apple-rgb t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (youdao-dictionary names chinese-word-at-point realgud-pry realgud test-simple loc-changes load-relative rainbow-mode rainbow-identifiers pyim pyim-basedict pangu-spacing pandoc-mode ox-pandoc ht find-by-pinyin-dired dash-at-point counsel-dash helm-dash company-quickhelp color-identifiers-mode ace-pinyin pinyinlib yapfify yaml-mode xterm-color ws-butler winum which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill toc-org tagedit sql-indent spaceline smex smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rake rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pbcopy paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint lice less-css-mode launchctl json-mode js2-refactor js-doc ivy-hydra insert-shebang indent-guide ibuffer-projectile hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md ggtags geeknote fuzzy flycheck-pos-tip flx-ido fish-mode fill-column-indicator figlet fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav ein dumb-jump disaster diminish diff-hl cython-mode csv-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-c-headers company-anaconda column-enforce-mode coffee-mode cnfonts cmake-mode clean-aindent-mode clang-format chruby bundler auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

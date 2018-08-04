@@ -28,16 +28,10 @@
 ;;   `zhenglinj/post-init-PACKAGE' to customize the package as it is loaded.
 
 (defconst zhenglinj-packages
-  '(avy
-    multiple-cursors
+  '(multiple-cursors
     lice
     figlet
-    ))
-
-(defun zhenglinj/init-avy ()
-  (use-package avy
-    :config
-    (global-set-key (kbd "C-;") 'avy-goto-word-or-subword-1)
+    cnfonts
     ))
 
 (defun zhenglinj/init-multiple-cursors ()
@@ -70,6 +64,30 @@
 
 (defun zhenglinj/init-figlet ()
   (use-package figlet
+    :defer t
+    :init
+    ;; Code to execute before package is loaded
+    :config
+    ;; Code to execute after package is loaded
+    ))
+
+(defun zhenglinj/init-cnfonts ()
+  (use-package cnfonts
+    :defer t
+    :init
+    ;; Code to execute before package is loaded
+    :config
+    ;; Code to execute after package is loaded
+    ;; 让 cnfonts 随着 Emacs 自动生效。
+    (cnfonts-enable)
+    ;; 让 spacemacs mode-line 中的 Unicode 图标正确显示。
+    (cnfonts-set-spacemacs-fallback-fonts)
+    (setq cnfonts-profiles
+          '("program" "org-mode" "read-book"))
+    ))
+
+(defun zhenglinj/init-cheat-sh ()
+  (use-package cheat-sh
     :defer t
     :init
     ;; Code to execute before package is loaded
