@@ -11,4 +11,3 @@
 
 (unbind-key "C-." flyspell-mode-map)
 (global-set-key (kbd "C-.") 'set-mark-command)
-(global-set-key (kbd "C-M-;") 'z/comment-dwim-line)
