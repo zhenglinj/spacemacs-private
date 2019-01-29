@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: PuTTY
+# key: putty
+# group: Global
+# --
+##### PuTTY #####
+# Private key
+*.ppk
